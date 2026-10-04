@@ -253,20 +253,46 @@
     .acc-body a { color: var(--primary); font-weight: 600; }
 
     /* ---- Gallery ---- */
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; max-width: 900px; margin: 0 auto;
+    /* Galeria redesenhada */
+    .gx{position:relative;overflow:hidden;background:radial-gradient(60% 50% at 85% 10%,rgba(122,181,29,.10),transparent 70%),radial-gradient(50% 40% at 0% 90%,rgba(122,181,29,.08),transparent 70%)}
+    .gx-lead{text-align:center;color:#6b7280;max-width:520px;margin:-.5rem auto 3.5rem;font-size:1.05rem}
+    .gx-head{max-width:1100px;margin:0 auto 1.5rem}
+    .gx-head h3{font-size:1.6rem;font-weight:700;color:#1f2a1a;margin:.4rem 0 0;letter-spacing:-.01em}
+    .gx-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5a8f12;background:rgba(122,181,29,.12);padding:.35rem .8rem;border-radius:999px}
+    .gx-head-row{display:flex;flex-wrap:nowrap;align-items:flex-end;justify-content:space-between;gap:1rem;margin-top:5rem}
+    .gx-webgrid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .gx-web{margin:0;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,.06);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+    .gx-web:hover{transform:translateY(-8px);box-shadow:0 40px 70px -25px rgba(40,70,10,.45),0 10px 24px -10px rgba(0,0,0,.15)}
+    .gx-web-bar{display:flex;align-items:center;gap:6px;padding:11px 14px;background:#f5f7f2;border-bottom:1px solid rgba(0,0,0,.05)}
+    .gx-web-bar i{width:10px;height:10px;border-radius:50%;background:#d5dccb}
+    .gx-web-bar span{margin-left:12px;flex:1;font-size:.72rem;color:#8a9381;background:#fff;border-radius:6px;padding:4px 10px;max-width:220px}
+    .gx-web img{display:block;padding: 10px; width:100%;object-position:top;  }
+    .gx-nav{display:flex;gap:.6rem;flex-shrink:0}
+    .gx-nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(122,181,29,.35);background:#fff;color:#5a8f12;display:grid;place-items:center;cursor:pointer;transition:all .25s}
+    .gx-nav button:hover{background:#7ab51d;color:#fff;border-color:#7ab51d}
+    .gx-nav svg{width:20px;height:20px}
+    .gx-track{max-width:1100px;margin:0 auto;display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 30px;scrollbar-width:none}
+    .gx-track::-webkit-scrollbar{display:none}
+    .gx-app{margin:0;flex:0 0 calc((100% - 72px)/4);scroll-snap-align:start;border-radius:22px;overflow:hidden;background:#f4f6f1;border:1px solid rgba(0,0,0,.06);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+    .gx-app:hover{transform:translateY(-8px) scale(1.02)}
+    .gx-app img{display:block;width:100%;aspect-ratio:9/19;object-fit:cover;object-position:top}
+    .gx-dots{display:flex;justify-content:center;gap:8px}
+    .gx-dots button{width:8px;height:8px;border-radius:999px;border:0;background:#d5dccb;cursor:pointer;transition:all .3s;padding:0}
+    .gx-dots button.on{width:28px;background:#7ab51d}
+    @media(max-width:900px){.gx-app{flex-basis:calc((100% - 48px)/3)}}
+    @media(max-width:700px){
+        .gx-webgrid{grid-template-columns:1fr}
+        .gx-head h3{font-size:1.3rem}
+        .gx-head-row{margin-top:3.5rem}
+        .gx-nav button{width:40px;height:40px}
+        .gx-track{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap:16px;padding-bottom:20px}
+        .gx-app{max-width: 70%}
     }
-    .gallery-placeholder {
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, var(--muted-bg), hsl(150, 30%, 93%));
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem; border-radius: var(--radius) var(--radius) 0 0;
-    }
-    .gallery-placeholder svg { width: 56px; height: 56px; color: var(--primary); opacity: 0.3; margin: 0 auto 1rem; display: block; }
-    .gallery-placeholder p { font-size: 1.1rem; color: var(--muted); font-weight: 500; }
-    .gallery-subtitle { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
-    .gallery-subtitle svg { width: 28px; height: 28px; color: var(--primary); }
+    @media(max-width:400px){.gx-app{flex-basis:145px}}
 
     /* ---- Team Carousel ---- */
     .carousel-wrapper {
@@ -567,58 +593,35 @@
 </section>
 
 <!-- Galeria -->
-<section id="galeria" class="section">
-  <div class="container">
-    <div style="max-width:900px;margin:0 auto">
-      <h2 class="section-title anim">Galeria</h2>
-      <div class="section-line anim"></div>
-      <h3 class="gallery-subtitle anim">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Site
-      </h3>
-      <div class="gallery-grid">
-        <div class="card anim anim-d1" style="overflow:hidden">
-          <div class="gallery-placeholder">
-            <div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <p>Captura 1 do Site</p>
-            </div>
-          </div>
-        </div>
-        <div class="card anim anim-d2" style="overflow:hidden">
-          <div class="gallery-placeholder">
-            <div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <p>Captura 2 do Site</p>
-            </div>
-          </div>
-        </div>
-      </div>
+<section id="galeria" class="section gx">
+    <div class="container">
+        <h2 class="section-title anim">Galeria</h2>
+        <div class="section-line anim"></div>
+        <p class="gx-lead anim">Conheça o MPI Brasil no navegador e no seu celular.</p>
 
-      <h3 class="gallery-subtitle anim" style="margin-top: 5em;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        APP
-      </h3>
-      <div class="gallery-grid">
-        <div class="card anim anim-d1" style="overflow:hidden">
-          <div class="gallery-placeholder">
-            <div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <p>Captura 1 do Site</p>
-            </div>
-          </div>
+        <div class="gx-head anim"><span class="gx-tag">Versão Web</span><h3>Consulte direto do computador</h3></div>
+        <div class="gx-webgrid">
+            <figure class="gx-web anim anim-d1">
+                <div class="gx-web-bar"><i></i><i></i><i></i><span>mpibrasil.com.br</span></div>
+                <img src="assets/img/screenshots/web1.png" alt="Versão web - tela 1" loading="lazy">
+            </figure>
+            <figure class="gx-web anim anim-d2">
+                <div class="gx-web-bar"><i></i><i></i><i></i><span>mpibrasil.com.br</span></div>
+                <img src="assets/img/screenshots/web2.png" alt="Versão web - tela 2" loading="lazy">
+            </figure>
         </div>
-        <div class="card anim anim-d2" style="overflow:hidden">
-          <div class="gallery-placeholder">
-            <div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <p>Captura 2 do Site</p>
-            </div>
-          </div>
+
+        <div class="gx-head gx-head-row anim">
+            <div><span class="gx-tag">App Mobile</span><h3>Na palma da mão</h3></div>
         </div>
-      </div>
+        <div class="gx-track anim" id="gx-track">
+            <figure class="gx-app"><img src="assets/img/screenshots/app1.png" alt="App mobile - tela 2" loading="lazy"></figure>
+            <figure class="gx-app"><img src="assets/img/screenshots/app2.png" alt="App mobile - tela 1" loading="lazy"></figure>
+            <figure class="gx-app"><img src="assets/img/screenshots/app3.png" alt="App mobile - tela 3" loading="lazy"></figure>
+            <figure class="gx-app"><img src="assets/img/screenshots/app5.png" alt="App mobile - tela 5" loading="lazy"></figure>
+        </div>
+        <div class="gx-dots" id="gx-dots"></div>
     </div>
-  </div>
 </section>
 
 
